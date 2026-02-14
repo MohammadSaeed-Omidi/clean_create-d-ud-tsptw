@@ -253,7 +253,7 @@ void create_directed_weighted_graph(igraph_t* directed_graph,
         for (int j = 0; j < n_vertices; j++) {
             double weight = MATRIX(*directed_distances, i, j);
             // Add arc if weight is not MAX_WEIGHT and not self-loop
-            if (i != j && weight != MAX_WEIGHT) {
+            if (i != j && weight != MAX_WEIGHT*10) {
                 igraph_vector_int_push_back(directed_edges, i);
                 igraph_vector_int_push_back(directed_edges, j);
                 igraph_vector_push_back(directed_weights, weight);
@@ -288,7 +288,7 @@ void create_undirected_weighted_graph(igraph_t* undirected_graph,
         for (int j = 0; j < n_vertices; j++) {
             double weight = MATRIX(*undirected_distances, i, j);
             // Add arc if weight is not MAX_WEIGHT and not self-loop
-            if (i != j && weight != MAX_WEIGHT) {
+            if (i != j && weight != MAX_WEIGHT*10) {
                 igraph_vector_int_push_back(undirected_edges, i);
                 igraph_vector_int_push_back(undirected_edges, j);
                 igraph_vector_push_back(undirected_weights, weight);
