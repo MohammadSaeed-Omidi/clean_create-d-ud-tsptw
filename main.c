@@ -112,7 +112,23 @@ int main() {
             create_tsptw_dataset_from_tsp(num_vertices, instance, width_list, num_widths, &undirected_distances, &undirected_shortest_path_distances, "un");
             create_tsptw_dataset_from_tsp(num_vertices, instance, width_list, num_widths, &directed_distances, &directed_shortest_path_distances, "d");
             
-
+            // ============ CLEANUP SECTION ============
+            // Destroy all matrices
+            igraph_matrix_destroy(&distances);
+            igraph_matrix_destroy(&directed_distances);
+            igraph_matrix_destroy(&undirected_distances);
+            igraph_matrix_destroy(&directed_shortest_path_distances);
+            igraph_matrix_destroy(&undirected_shortest_path_distances);
+            
+            // Destroy graphs and their associated vectors
+            igraph_destroy(&directed_graph);
+            igraph_vector_int_destroy(&directed_edges);
+            igraph_vector_destroy(&directed_weights);
+            
+            igraph_destroy(&undirected_graph);
+            igraph_vector_int_destroy(&undirected_edges);
+            igraph_vector_destroy(&undirected_weights);
+            // =========================================
         }
     }
     return 0;
