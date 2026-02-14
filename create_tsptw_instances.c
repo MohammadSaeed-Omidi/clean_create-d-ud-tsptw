@@ -463,6 +463,15 @@ void create_undirected_predecessors_matrix(igraph_t* undirected_graph, igraph_ve
         igraph_vector_int_destroy(&inbound_edges);
     }
 
+    // print predecessor matrix
+    printf("undirected_predecessors \n");
+    for (int i = 0; i < num_vertices; i++) {
+        for (int j = 0; j < num_vertices; j++) {
+            printf("%ld ", (long)MATRIX(undirected_predecessors, i, j));
+        }
+        printf("\n");
+    }
+
     char dir_path[100];
     // Create the same directory structure as TSP files
     snprintf(dir_path, sizeof(dir_path), "instances/%ld_nodes/tsp_tw/%s/%d", num_vertices, "un", instance_num);
@@ -532,7 +541,7 @@ void create_directed_predecessors_matrix(igraph_t* directed_graph, igraph_vector
             source,          // from
             igraph_vss_all(), // to all vertices
             directed_weights,         // edge weights
-            IGRAPH_ALL,      // directedness
+            IGRAPH_OUT,      // directedness
             &parents,        // parents (predecessors)
             &inbound_edges   // inbound edges
         );
@@ -564,6 +573,15 @@ void create_directed_predecessors_matrix(igraph_t* directed_graph, igraph_vector
         igraph_vector_int_destroy(&inbound_edges);
     }
 
+    // print predecessor matrix
+    printf("directed_predecessors \n");
+    for (int i = 0; i < num_vertices; i++) {
+        for (int j = 0; j < num_vertices; j++) {
+            printf("%ld ", (long)MATRIX(directed_predecessors, i, j));
+        }
+        printf("\n");
+    }
+
     char dir_path[100];
     // Create the same directory structure as TSP files
     snprintf(dir_path, sizeof(dir_path), "instances/%ld_nodes/tsp_tw/%s/%d", num_vertices, "d", instance_num);
@@ -578,7 +596,7 @@ void create_directed_predecessors_matrix(igraph_t* directed_graph, igraph_vector
     
     // Create .tsptw filename
     snprintf(filename, sizeof(filename), "instances/%ld_nodes/tsp_tw/%s/%d/predecessors_matrix_n_%ld_i_%d.paths", 
-             num_vertices, "un", instance_num, num_vertices, instance_num);
+             num_vertices, "d", instance_num, num_vertices, instance_num);
     
     FILE* paths_file = fopen(filename, "w");
     fprintf(paths_file, "SHORTEST_PATHS_MATRIX for n_%ld_i_%d\n", num_vertices, instance_num);
