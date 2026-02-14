@@ -92,7 +92,7 @@ int main() {
             igraph_t undirected_graph;
             igraph_vector_int_t undirected_edges;
             igraph_vector_t undirected_weights;
-            create_directed_weighted_graph(&undirected_graph, &undirected_edges, &undirected_weights, &undirected_distances, num_vertices);
+            create_undirected_weighted_graph(&undirected_graph, &undirected_edges, &undirected_weights, &undirected_distances, num_vertices);
             // print_weighted_graph_info(&undirected_graph, &undirected_weights, "UNDIRECTED WEIGHTED GRAPH", 0);
             
             // Create directed_transformed TSP instance
